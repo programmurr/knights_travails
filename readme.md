@@ -3,6 +3,7 @@
 
 *"Your task is to build a function knight_moves that shows the simplest possible way to get from one square to another by outputting all squares the knight will stop on along the way... Your function would therefore look like:"*
 
+
 ```
  > knight_moves([3,3],[4,3])
   => You made it in 3 moves!  Here's your path:
@@ -11,6 +12,7 @@
     [2,4]
     [4,3]
 ```
+
 1 - Put together a script that creates a game board and a knight.
 
 2 - Treat all possible moves the knight could make as children in a tree. Don’t allow any moves to go off the board
