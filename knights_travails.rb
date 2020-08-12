@@ -69,3 +69,4 @@ p board.get_cell(7, 1)
 p board.get_cell(0, 6)
 p white_knight
 p black_knight
+
