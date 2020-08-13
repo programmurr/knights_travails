@@ -15,6 +15,32 @@ class Knight
     @piece = 'Kn'
     @position = []
   end
+
+  def possible_moves(array)
+    all_moves = all_moves(array)
+    possible_array = []
+    all_moves.each do |co_ord|
+      next unless co_ord[0] < 8 && co_ord[1] < 8
+
+      possible_array << co_ord if !co_ord[0].negative? && !co_ord[1].negative?
+    end
+    possible_array
+  end
+
+  private
+
+  def all_moves(array)
+    move_array = []
+    move_array << [array[0] + 2, array[1] - 1]
+    move_array << [array[0] - 2, array[1] + 1]
+    move_array << [array[0] - 2, array[1] - 1]
+    move_array << [array[0] + 2, array[1] + 1]
+    move_array << [array[0] + 1, array[1] - 2]
+    move_array << [array[0] - 1, array[1] + 2]
+    move_array << [array[0] - 1, array[1] - 2]
+    move_array << [array[0] + 1, array[1] + 2]
+    move_array
+  end
 end
 
 class Board
@@ -59,14 +85,10 @@ class Board
   end
 end
 
+# Make a Tree, or graph, that can display all of the knight's current moves?
+
 board = Board.new
 white_knight = Knight.new
-black_knight = Knight.new
-board.set_cell(7, 1, white_knight)
-board.set_cell(0, 6, black_knight)
+board.set_cell(0, 6, white_knight)
 board.formatted_grid
-p board.get_cell(7, 1)
-p board.get_cell(0, 6)
-p white_knight
-p black_knight
-
+p white_knight.possible_moves(white_knight.position)
