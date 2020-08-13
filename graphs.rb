@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'pry'
-require_relative 'chess'
 
 class Node
   attr_reader :name
+  attr_accessor :successors, :co_ord
   def initialize(name, co_ord)
     @name = name
     @co_ord = co_ord
@@ -16,11 +16,12 @@ class Node
   end
 
   def to_s
-    "#{@name} -> [#{@successors.map(&:name).join(' ')}]"
+    "#{@name} is #{@co_ord}, possible positions are -> #{@successors.map(&:co_ord)}"
   end
 end
 
 class Graph
+  attr_accessor :nodes
   def initialize
     @nodes = {}
   end
@@ -38,23 +39,20 @@ class Graph
   end
 end
 
-graph = Graph.new
-graph.add_node(Node.new(:current_pos, [7, 1]))
-graph.add_node(Node.new(:move1, [5, 0]))
-graph.add_node(Node.new(:move2, [5, 2]))
-graph.add_node(Node.new(:move3, [6, 3]))
-graph.add_edge(:current_pos, :move1)
-graph.add_edge(:current_pos, :move2)
-graph.add_edge(:current_pos, :move3)
-p graph[:current_pos]
-
-# Make a program that:
-# Gets knight's current position
-# Turns it into a node
-# Calculates the next possible positions
-# Turns them into nodes
-# Adds all those nodes to the graph
-# Traverses from one node to another when told
-# Re-calculates next possible positions
-# Can traverse to one of them
-# And so on...
+# Make graph
+# def add_nodes(graph, current_position, possible_moves)
+# - Add current position as node to graph
+# - Add all possible moves as nodes to graph
+# - Return updated graph
+# end
+# def add_edges(graph)
+# - Add edges from current position to all possible moves
+# - Return updated graph
+# end
+# def move_node(graph)
+# - User selects which node to move to
+# - Node moves to that node
+# - Return current (new) node
+# end
+# Re-calculate possible moves from current node
+# Loop to beginning?
