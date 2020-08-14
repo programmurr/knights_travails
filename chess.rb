@@ -31,10 +31,6 @@ class Knight
     possible_array
   end
 
-  def move
-    # Execute a move from one cell to another
-  end
-
   private
 
   def all_moves(array)

@@ -13,9 +13,7 @@ y1 = gets.chomp.to_i
 board.set_cell(x1, y1, white_knight)
 board.formatted_grid
 possible_moves = white_knight.possible_moves(white_knight.position)
-
 graph = Graph.new
-
 graph.add_nodes_to_graph(white_knight.position, possible_moves)
 graph.add_edges_between_nodes
 loop do
