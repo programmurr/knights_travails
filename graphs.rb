@@ -3,8 +3,7 @@
 require 'pry'
 
 class Node
-  attr_reader :name
-  attr_accessor :successors, :co_ord
+  attr_accessor :successors, :co_ord, :name
   def initialize(name, co_ord)
     @name = name
     @co_ord = co_ord
@@ -38,21 +37,3 @@ class Graph
     @nodes[name]
   end
 end
-
-# Make graph
-# def add_nodes(graph, current_position, possible_moves)
-# - Add current position as node to graph
-# - Add all possible moves as nodes to graph
-# - Return updated graph
-# end
-# def add_edges(graph)
-# - Add edges from current position to all possible moves
-# - Return updated graph
-# end
-# def move_node(graph)
-# - User selects which node to move to
-# - Node moves to that node
-# - Return current (new) node
-# end
-# Re-calculate possible moves from current node
-# Loop to beginning?

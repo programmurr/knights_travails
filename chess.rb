@@ -59,6 +59,10 @@ class Board
     piece.position = [x, y]
   end
 
+  def clear_cell(x, y)
+    grid[x][y].value = ''
+  end
+
   def formatted_grid
     grid.each do |row|
       puts row.map { |cell| cell.value == '' ? '_' : cell.value.piece.to_s }.join(' ')
@@ -83,4 +87,3 @@ class Board
     end
   end
 end
-
