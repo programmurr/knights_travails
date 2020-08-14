@@ -54,9 +54,13 @@ class Graph
     end
   end
 
-  def move_node(input)
-    nodes[:current_position] = nodes[:current_position].successors[input]
-    nodes[:current_position].name = :current_position
+  def move_node(array)
+    nodes[:current_position].successors.each do |node|
+      if node.co_ord == array
+        nodes[:current_position] = node
+        nodes[:current_position].name = :current_position
+      end
+    end
   end
 
   def clear_nodes
