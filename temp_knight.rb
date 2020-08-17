@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# A less functional version of the Knight class
+# Used as flags to calculate a path from the end knight to the start knight
 class TempKnight
   MOVES = [2, 2, -2, -2, 1, 1, -1, -1].zip([1, -1, 1, -1, 2, -2, 2, -2])
 

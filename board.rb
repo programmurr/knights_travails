@@ -2,6 +2,7 @@
 
 require_relative 'cell'
 
+# Generates an unseen board for the knight and temp_knight pieces to manoeuvre on
 class Board
   attr_accessor :grid
 
@@ -17,12 +18,6 @@ class Board
 
   def clear_cell(x, y)
     grid[x][y].value = ''
-  end
-
-  def formatted_grid
-    grid.each do |row|
-      puts row.map { |cell| cell.value == '' ? '_' : cell.value.piece.to_s }.join(' ')
-    end
   end
 
   def put_temp_knights_on_board

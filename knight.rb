@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Will create 2 knight objects for the game to calculate a path across
 class Knight
   MOVES = [2, 2, -2, -2, 1, 1, -1, -1].zip([1, -1, 1, -1, 2, -2, 2, -2])
 
@@ -43,6 +44,16 @@ class Knight
       start_moves. each do |move|
         nodes << cell if cell.co_ords == move
       end
+    end
+  end
+
+  def move_to_finish(path_cells)
+    loop do
+      move
+      self.number_of_moves += 1
+      calculate_next_move(path_cells)
+      puts position.co_ords.to_s
+      break if counter.zero?
     end
   end
 
