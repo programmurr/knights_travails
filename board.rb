@@ -37,6 +37,29 @@ class Board
     end
   end
 
+  def remove_empty_cells
+    return_array = []
+    grid.each do |row|
+      row.each do |cell|
+        return_array << cell if cell.value != ''
+      end
+    end
+    return_array
+  end
+
+  def renew_possible_moves(count)
+    return_array = []
+    grid.each do |row|
+      row.each do |cell|
+        return_array << cell.value.possible_moves(cell.co_ords) if cell.value.class == TempKnight && cell.counter == count
+      end
+    end
+    left = []
+    right = []
+    return_array.flatten.each_with_index { |element, idx| idx.even? ? left << element : right << element }
+    return_array = left.zip(right)
+  end
+
   private
 
   def get_cell(x, y)

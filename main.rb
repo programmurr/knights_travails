@@ -25,19 +25,6 @@ def remove_elements(array)
   return_array
 end
 
-def renew_possible_moves(board, count)
-  return_array = []
-  board.grid.each do |row|
-    row.each do |cell|
-      return_array << cell.value.possible_moves(cell.co_ords) if cell.value.class == TempKnight && cell.counter == count
-    end
-  end
-  left = []
-  right = []
-  return_array.flatten.each_with_index { |element, idx| idx.even? ? left << element : right << element }
-  return_array = left.zip(right)
-end
-
 def append_to_final_queue(final_queue, temp_queue)
   temp_queue.each do |element|
     final_queue << element
@@ -77,12 +64,19 @@ board = Board.new
 start_knight = Knight.new
 end_knight = Knight.new
 temp_knight = TempKnight.new
-x1 = 4
-y1 = 7
-x2 = 7
-y2 = 7
+puts 'Enter the x co-ordinate of where you want to start:'
+x1 = gets.chomp.to_i
+puts 'Enter the y co-ordinate of where you want to start:'
+y1 = gets.chomp.to_i
+puts 'Enter the x co-ordinate of where you want to finish:'
+x2 = gets.chomp.to_i
+puts 'Enter the y co-ordinate of where you want to finish:'
+y2 = gets.chomp.to_i
 start = [x1, y1]
+puts "Your start position is #{start}"
 target = [x2, y2]
+puts "Your end position is #{target}"
+sleep 3
 board.set_cell(x1, y1, start_knight)
 board.set_cell(x2, y2, end_knight)
 temp_knight.position = [x1, y1]
@@ -102,14 +96,18 @@ loop do
   temp_queue.shift
   append_to_final_queue(final_queue, temp_queue)
   board.put_temp_knights_on_board
-  board.formatted_grid
   break if path_discovered?(start_possible_moves, end_possible_moves)
 
-  end_possible_moves = renew_possible_moves(board, count)
+  end_possible_moves = board.renew_possible_moves(count)
   count += 1
-  puts '---'
 end
-binding.pry
-# Push the shortest route to the start_knight nodes (be aware, start_knight counter could initially be nil, equal to or less than the nodes around it)
-# Only push nodes the start_knight can actually move to, e.g. it cannot move to 0,2 if the start is 0,0
-# Move the knight along the nodes
+cells_containing_path = board.remove_empty_cells
+start_knight.start_positions(cells_containing_path, start_possible_moves)
+loop do
+  start_knight.move
+  start_knight.number_of_moves += 1
+  start_knight.calculate_next_move(cells_containing_path)
+  puts "#{start_knight.position.co_ords} "
+  break if start_knight.counter.zero?
+end
+puts "Done! You made it in #{start_knight.number_of_moves} moves!"
