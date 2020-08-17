@@ -2,12 +2,12 @@
 
 require_relative 'node'
 
-class Knight
+class TempKnight
   MOVES = [2, 2, -2, -2, 1, 1, -1, -1].zip([1, -1, 1, -1, 2, -2, 2, -2])
 
   attr_accessor :piece, :position, :nodes
   def initialize
-    @piece = 'Kn'
+    @piece = 'Tp'
     @position = []
     @nodes = {}
   end
@@ -60,7 +60,7 @@ class Knight
     nodes.slice(:current_position)
   end
 
-    private
+  private
 
   def all_moves(array)
     MOVES.map { |a, b| [array.first + a, array.last + b] }
