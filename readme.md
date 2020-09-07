@@ -20,3 +20,7 @@
 3 - Decide which search algorithm is best to use for this case. Hint: one of them could be a potentially infinite series
 
 4 - Use the chosen search algorithm to find the shortest path between the starting square (or node) and the ending square. Output what that full path looks like
+
+### Current status:
+
+Complete! View it live on replit: https://repl.it/@programmurr/knightstravails#main.rb
